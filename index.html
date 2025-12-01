@@ -13,7 +13,7 @@
     .crisis{background:#9b2226!important;color:white;font-size:1.2em;animation:pulse 2s infinite;padding:18px}
     @keyframes pulse{0%{opacity:.8}50%{opacity:1}100%{opacity:.8}}
     #input-area{position:fixed;bottom:0;left:0;right:0;padding:15px;background:#0d1b2a;display:flex;gap:10px}
-    input{flex:1;padding:15px;border-radius:12px;border:none;font-size:1.1em}
+    input{flex:1;padding:15px;border-radius:12px;border:none;font-size:1.1em;background:#fff;color:#000}
     button{padding:15px;border-radius:12px;background:#38a3a5;color:white;border:none;font-weight:bold;cursor:pointer}
     #mic{background:#e63946}
     h1{color:#38a3a5;text-align:center}
@@ -34,11 +34,9 @@
   const input = document.getElementById('userInput');
   let toxicityModel = null;
   let modelReady = false;
+  let recognition = null;
 
-  // Hotlines (shortened for speed)
   const HOTLINES = {US:"988",GB:"116 123",CA:"988",AU:"13 11 14",IN:"+91-9820466726",BR:"188",default:"befrienders.org"};
-
-  // 50+ caring replies
   const replies = ["I'm really here with you right now.","Thank you for trusting me with that.","That sounds incredibly heavy.","You're not alone in feeling this way.","Your feelings make complete sense.","I'm so sorry you're going through this.","It's okay to not be okay.","You've already taken a brave step by talking.","What’s been the hardest part lately?","Would it help to tell me more?","I care about what happens to you.","You're stronger than you feel right now.","This pain won't last forever.","You've survived every bad day so far.","I'm proud of you for still being here.","Your life matters.","One breath at a time. I'm right here.","You deserve help and hope.","I believe in you."];
   const followUps = ["What’s weighing on you most?","When did it start feeling this heavy?","How are you sleeping?","What usually helps even a little?"];
 
@@ -51,17 +49,15 @@
     if(type!=='user') speechSynthesis.speak(new SpeechSynthesisUtterance(msg));
   }
 
-  // Try to load the model, but NEVER hang
   async function tryLoadModel() {
     add("One moment — loading safety system…");
     try {
       const tf = await import('https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js');
-      const toxicity = await import('https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity@1.2.2');
-      toxicityModel = await toxicity.load(0.75, ['toxicity','severe_toxicity','threat']);
+      const { load } = await import('https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity@1.2.2');
+      toxicityModel = await load(0.75, ['toxicity','severe_toxicity','threat']);
       modelReady = true;
       add("I'm ready. How are you feeling right now?");
     } catch(e) {
-      console.log("Model skipped — still fully functional");
       modelReady = false;
       add("I'm here for you. How are you feeling?");
     }
@@ -74,16 +70,17 @@
     add(`Please reach out RIGHT NOW — help is here 24/7:`, 'crisis');
     add(`${line}`, 'crisis');
     add("You are loved. You matter. Just one more minute.", 'crisis');
-    add("Try this grounding exercise:<br>5 things you see<br>4 you can touch<br>3 you hear<br>2 you smell<br>1 you taste", 'crisis');
+    add("Grounding exercise:<br>5 things you see<br>4 you can touch<br>3 you hear<br>2 you smell<br>1 you taste", 'crisis');
   }
 
-  async lions function sendMessage() {
-    const text = input.value.trim().toLowerCase();
+  async function sendMessage() {
+    const text = input.value.trim();
     if (!text) return;
     add(text, 'user');
     input.value = '';
 
-    const crisisWords = /suicid|kill myself|want to die|end it|no point living|self.?harm|cut|overdose/i.test(text);
+    const lower = text.toLowerCase();
+    const crisisWords = /suicid|kill myself|want to die|end it|no point living|self.?harm|cut|overdose/i.test(lower);
 
     if (crisisWords || (modelReady && toxicityModel && (await toxicityModel.classify(text)).some(p=>p.results[0].match))) {
       triggerCrisis();
@@ -98,15 +95,15 @@
   function toggleVoice() {
     if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) return;
     const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (recognition) { recognition.stop(); recognition=null; return; }
+    if (recognition) { recognition.stop(); recognition = null; return; }
     recognition = new Rec();
     recognition.lang = navigator.language;
-    recognition.onresult = e => input.value = e.results[0][0].transcript;
+    recognition.onresult = e => { input.value = e.results[0][0].transcript; sendMessage(); };
     recognition.start();
   }
 
-  input.addEventListener('keypress', e => e.key==='Enter' && sendMessage());
-  tryLoadModel(); // starts instantly, never hangs
+  input.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+  tryLoadModel();
 </script>
 </body>
 </html>
