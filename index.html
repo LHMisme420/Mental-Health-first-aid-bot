@@ -1,142 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HopeBot – You Are Not Alone</title>
+  <meta name="description" content="Free private mental health crisis chatbot – works offline"/>
+  <meta name="theme-color" content="#38a3a5"/>
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkhvcGVCb3QiLAogICJzaG9ydF9uYW1lIjogIkhvcGVCb3QiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBkMWIyYSIsCiAgInRoZW1lX2NvbG9yIjogIiMzOGEzYTUiLAogICJpY29ucyI6IFt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsPHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE5MiA5NmgxMThWMzZIMTkyVjE4MEg1NFY5NkgxOTJaTTM2IDk2YzAgLTQ1LjM3IDM2LjYzIC04MiA4MiAtODJzODIgMzYuNjMgODIgODIgLTM2LjYzIDgyIC04MiA4MiAtODIgLTM2LjYzIC04MiAtODJ6IiBmaWxsPSIjMzhhM2E1Ii8+PC9zdmc+IiBzaXplcz0iMTkyIiB0eXBlPSJpbWFnZS9zdmcreG1sIn0seyJzcmMiOiJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjJaeUI0Yld4VGRHbHVaRzFwYmlCb2FXTnJaRDBpYkd4cGJtZHpjM1I1Y0dVaU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2h1YVc0aU1TWmhiR2 Immunol
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity@1.2.2"></script>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:600px;margin:40px auto;padding:20px;background:#0d1b2a;color:#e0e1dd;line-height:1.6}
+    #chat{height:70vh;overflow-y:auto;border:1px solid #33415c;padding:15px;border-radius:12px;background:#1b263b;margin:20px 0}
+    .message{margin:10px 0;padding:12px 18px;border-radius:18px;max-width:82%;word-wrap:break-word}
+    .user{background:#778da9;margin-left:auto;color:white}
+    .bot{background:#415a77;color:white}
+    .crisis{background:#9b2226!important;color:white;font-size:1.2em;animation:pulse 2s infinite;padding:18px}
+    @keyframes pulse{0%{opacity:.8}50%{opacity:1}100%{opacity:.8}}
+    #input-area{position:fixed;bottom:0;left:0;right:0;padding:15px;background:#0d1b2a;display:flex;gap:10px}
+    input{flex:1;padding:15px;border-radius:12px;border:none;font-size:1.1em}
+    button{padding:15px;border-radius:12px;background:#38a3a5;color:white;border:none;font-weight:bold;cursor:pointer}
+    #mic{background:#e63946}
+    h1{color:#38a3a5;text-align:center}
+  </style>
+</head>
+<body>
+  <h1>HopeBot</h1>
+  <p id="welcome">You are not alone. Everything stays private.</p>
+  <div id="chat"></div>
+  <div id="input-area">
+    <input type="text" id="userInput"	placeholder="How are you feeling?" autocomplete="off" autofocus />
+    <button id="mic" onclick="toggleVoice()">Mic</button>
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
 <script>
   const chat = document.getElementById('chat');
   const input = document.getElementById('userInput');
   const welcome = document.getElementById('welcome');
 
-  // 200+ country hotlines
-  const HOTLINES = { /* keep your existing list */ };
-
-  // Translations
-  const TRANSLATIONS = { /* keep your existing ones */ };
-  const lang = (navigator.language || 'en').split('-')[0];
+  const HOTLINES = {US:"988",GB:"116 123",CA:"988",AU:"13 11 14",IN:"+91-9820466726",BR:"188",MX:"55-5259-8121",default:"befrienders.org"};
+  const TRANSLATIONS = {en:{welcome:"You are not alone. Everything stays private.",grounding:"5 things you see\n4 you touch\n3 you hear\n2 you smell\n1 you taste"},es:{welcome:"No estás solo/a. Todo es privado.",grounding:"5 cosas ves\n4 tocas\n3 oyes\n2 hueles\n1 saboreas"},ar:{welcome:"أنت لست وحدك. كل شيء سري.",grounding:"٥ ترى\n٤ تلمس\n٣ تسمع\n٢ تشم\n١ تذوق"},hi:{welcome:"आप अकेले नहीं हैं। सब निजी है।",grounding:"५ देखें\n४ छुएं\n३ सुनें\n२ सूंघें\n१ चखें"}};
+  const lang = (navigator.language||'en').split('-')[0];
   const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
   welcome.textContent = t.welcome;
 
   let toxicityModel, recognition, inCrisis = false;
 
-  // 50+ REAL, VARIED, HUMAN responses
-  const normalReplies = [
-    "I'm really here with you right now.",
-    "Thank you for trusting me with that.",
-    "That sounds incredibly heavy. I'm listening.",
-    "You're not alone in feeling this way.",
-    "Your feelings make complete sense.",
-    "I'm so sorry you're going through this.",
-    "It's okay to not be okay right now.",
-    "You've already taken a brave step by talking.",
-    "What’s been the hardest part for you lately?",
-    "Would it help to tell me more?",
-    "I care about what happens to you.",
-    "You're stronger than you feel right now.",
-    "This pain won't last forever, even if it feels that way.",
-    "You've survived 100% of your worst days so far.",
-    "I'm proud of you for still being here.",
-    "Your story matters. Your life matters.",
-    "One breath at a time. I'm right here.",
-    "You deserve to be here. You deserve help.",
-    "It's okay to ask for help. You’re worth it.",
-    "I believe you. I believe in you."
-  ];
+  const normalReplies = ["I'm really here with you right now.","Thank you for trusting me with that.","That sounds incredibly heavy.","You're not alone in feeling this way.","Your feelings make complete sense.","I'm so sorry you're going through this.","It's okay to not be okay right now.","You've already taken a brave step by talking.","What’s been the hardest part for you lately?","Would it help to tell me more?","I care about what happens to you.","You're stronger than you feel right now.","This pain won't last forever.","You've survived 100% of your worst days so far.","I'm proud of you for still being here.","Your story matters. Your life matters.","One breath at a time. I'm right here.","You deserve to be here.","It's okay to ask for help.","I believe you. I believe in you."];
+  const followUps = ["What’s been weighing on you the most?","When did this start feeling so heavy?","Is there someone in your life who knows how you’re feeling?","What usually helps, even a little?","How are you sleeping right now?"];
 
-  const followUpQuestions = [
-    "What’s been weighing on you the most?",
-    "When did this start feeling so heavy?",
-    "Is there someone in your life who knows how you’re feeling?",
-    "What usually helps, even a little, when things get dark?",
-    "How are you sleeping? Eating? Taking care of yourself?",
-    "Have you been able to talk to anyone about this?"
-  ];
-
-  async function loadModel() {
-    addBotMessage("One moment — loading safety system…");
-    toxicityModel = await toxicity.load(0.75, ['toxicity','severe_toxicity','threat']);
-    addBotMessage("I’m here whenever you’re ready. How are you feeling right now?");
-  }
-
-  function addMessage(text, sender) {
-    const div = document.createElement('div');
-    div.className = `message ${sender}`;
-    div.innerHTML = text.replace(/\n/g, '<br>');
-    chat.appendChild(div);
-    chat.scrollTop = chat.scrollHeight;
-    if (sender !== 'user') speak(text);
-  }
-  const addBotMessage = t => addMessage(t, 'bot');
-  const addCrisisMessage = t => addMessage(t, 'crisis');
-
-  function speak(text) {
-    if ('speechSynthesis' in window) {
-      speechSynthesis.cancel();
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = {es:'es-ES', ar:'ar-SA', hi:'hi-IN'}[lang] || 'en-US';
-      speechSynthesis.speak(utter);
-    }
-  }
-
-  function triggerCrisisResponse() {
-    inCrisis = true;
-    const countryCode = (navigator.language.split('-')[1] || 'US').toUpperCase();
-    const hotline = HOTLINES[countryCode] || HOTLINES.default;
-
-    addCrisisMessage("I’m really worried about you right now.");
-    addCrisisMessage("You don’t have to face this alone — help is available 24/7:");
-    addCrisisMessage(`Call or text: ${hotline}`);
-    addCrisisMessage("You are loved. You matter. Just stay with me one more minute.");
-    addCrisisMessage(t.grounding || "Try this grounding exercise:\n5 things you see\n4 you can touch\n3 you can hear\n2 you can smell\n1 you can taste");
-  }
-
-  async function sendMessage(text = input.value.trim()) {
-    if (!text) return;
-    addMessage(text, 'user');
-    input.value = '';
-
-    const predictions = await toxicityModel.classify(text);
-    const isSevere = predictions.some(p => p.results[0].match);
-    const crisisPattern = /suicid|kill myself|want to die|end it all|no point living|self.?harm|cut myself|overdose|going to kill myself/i;
-
-    if (isSevere || crisisPattern.test(text.toLowerCase())) {
-      triggerCrisisResponse();
-      return;
-    }
-
-    // Normal conversation — varied + follow-ups
-    const lower = text.toLowerCase();
-    let reply = normalReplies[Math.floor(Math.random() * normalReplies.length)];
-
-    // Add occasional follow-up question
-    if (Math.random() < 0.35 || lower.includes('don’t know') || lower.includes('tired') || lower.includes('can’t')) {
-      reply += "<br><br>" + followUpQuestions[Math.floor(Math.random() * followUpQuestions.length)];
-    }
-
-    addBotMessage(reply);
-  }
-
-  // Voice input
-  function toggleVoice() {
-    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
-      alert("Voice not supported in your browser");
-      return;
-    }
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (recognition && recognition.running) {
-      recognition.stop();
-      recognition.running = false;
-      document.getElementById('mic').style.background = '#e63946';
-    } else {
-      recognition = new SpeechRecognition();
-      recognition.lang = {es:'es-ES', ar:'ar-SA', hi:'hi-IN'}[lang] || 'en-US';
-      recognition.running = true;
-      document.getElementById('mic').style.background = '#2a9d8f';
-      recognition.onresult = e => input.value = e.results[0][0].transcript;
-      recognition.start();
-    }
-  }
-
-  input.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+  async function loadModel(){addBotMessage("One moment — loading safety system…");toxicityModel=await toxicity.load(0.75,['toxicity','severe_toxicity','threat']);addBotMessage("I’m here whenever you’re ready. How are you feeling?");}
+  function addMessage(e,t){const n=document.createElement("div");n.className=`message ${t}`,n.innerHTML=e.replace(/\n/g,"<br>"),chat.appendChild(n),chat.scrollTop=chat.scrollHeight,t!=="user"&&speak(e)}
+  const addBotMessage=e=>addMessage(e,"bot");
+  const addCrisisMessage=e=>addMessage(e,"crisis");
+  function speak(e){if("speechSynthesis"in window){speechSynthesis.cancel();const t=new SpeechSynthesisUtterance(e);t.lang={es:"es-ES",ar:"ar-SA",hi:"hi-IN"}[lang]||"en-US",speechSynthesis.speak(t)}}
+  function triggerCrisisResponse(){inCrisis=true;const e=(navigator.language.split("-")[1]||"US").toUpperCase(),t=HOTLINES[e]||HOTLINES.default;addCrisisMessage("I’m really worried about you right now."),addCrisisMessage("You don’t have to face this alone — help is available 24/7:"),addCrisisMessage(`Call or text: ${t}`),addCrisisMessage("You are loved. You matter. Just stay with me one more minute."),addCrisisMessage(t.grounding)}
+  async function sendMessage(e=input.value.trim()){if(!e)return;addMessage(e,"user"),input.value="";const n=await toxicityModel.classify(e),s=n.some(o=>o.results[0].match),i=/suicid|kill myself|want to die|end it all|no point|self.?harm|cut|overdose/i.test(e.toLowerCase());if(s||i){triggerCrisisResponse();return}let a=normalReplies[Math.floor(Math.random()*normalReplies.length)];Math.random()<0.4&&(a+="<br><br>"+followUps[Math.floor(Math.random()*followUps.length)]),addBotMessage(a)}
+  function toggleVoice(){if(!("webkitSpeechRecognition"in window||"SpeechRecognition"in window))return alert("Voice not supported");const e=window.SpeechRecognition||window.webkitSpeechRecognition;recognition?recognition.stop()&&(recognition=null,document.getElementById("mic").style.background="#e63946"):(recognition=new e,recognition.lang={es:"es-ES",ar:"ar-SA",hi:"hi-IN"}[lang]||"en-US",recognition.continuous=!1,recognition.onresult=t=>input.value=t.results[0][0].transcript,recognition.start(),document.getElementById("mic").style.background="#2a9d8f")}
+  input.addEventListener("keypress",e=>{e.key==="Enter"&&sendMessage()});
   loadModel();
 
-  // PWA offline
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('data:application/javascript,self.addEventListener("fetch",e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))))');
-  }
+  if("serviceWorker"in navigator){navigator.serviceWorker.register("data:application/javascript,self.addEventListener('fetch',e=>e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request))))")}
 </script>
+</body>
+</html>
