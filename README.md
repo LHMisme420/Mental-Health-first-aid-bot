@@ -7,7 +7,7 @@ Zero servers. Zero tracking. Zero accounts.
 Works offline after first visit.  
 Detects suicidal ideation or severe distress in real time and immediately connects to crisis hotlines.
 
-Live Demo → https://YOUR-USERNAME.github.io/hopebot
+Live Demo → https://github.com/LHMisme420/Mental-Health-first-aid-bot.git
 
 ## Why HopeBot exists
 Every 40 seconds, someone dies by suicide (WHO).  
