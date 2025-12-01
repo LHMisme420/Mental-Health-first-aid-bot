@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HopeBot – You Are Not Alone</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity@1.2.2"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #0d1b2a; color: #e0e1dd; }
+    #chat { height: 70vh; overflow-y: auto; border: 1px solid #33415c; padding: 15px; border-radius: 12px; background: #1b263b; }
+    .message { margin: 10px 0; padding: 12px; border-radius: 18px; max-width: 80%; }
+    .user { background: #778da9; align-self: flex-end; margin-left: auto; }
+    .bot { background: #415a77; }
+    #input-area { margin-top: 20px; display: flex; gap: 10px; }
+    input { flex: 1; padding: 15px; border-radius: 12px; border: none; font-size: 1.1em; }
+    button { padding: 15px 25px; border-radius: 12px; background: #38a3a5; color: white; border: none; font-weight: bold; cursor: pointer; }
+    .crisis { background: #9b2226 !important; color: white; font-size: 1.3em; animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { opacity: 0.8; } 50% { opacity: 1; } 100% { opacity: 0.8; } }
+  </style>
+</head>
+<body>
+  <h1>🫂 HopeBot</h1>
+  <p>I’m here to listen. You are not alone. Talk to me — everything stays private.</p>
+  <div id="chat"></div>
+  <div id="input-area">
+    <input type="text" id="userInput" placeholder="How are you feeling right now?" autocomplete="off" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+<script>
+  const chat = document.getElementById('chat');
+  const input = document.getElementById('userInput');
+
+  // Crisis hotlines by country (we’ll auto-detect later)
+  const HOTLINES = {
+    US: "988 or text HOME to 741741",
+    UK: "Samaritans: 116 123",
+    CA: "1-833-456-4566",
+    AU: "Lifeline: 13 11 14",
+    IN: "AASRA: 91-9820466726",
+    default: "befrienders.org (find your country)"
+  };
+
+  let toxicityModel;
+  let inCrisis = false;
+
+  // Load the toxicity model (includes suicide/self-harm classification)
+  async function loadModel() {
+    addBotMessage("Loading safety system… one moment.");
+    toxicityModel = await toxicity.load(0.75, ['identity_attack', 'insult', 'severe_toxicity', 'threat', 'toxicity']);
+    addBotMessage("I’m ready. How are you feeling?");
+  }
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = `message ${sender}`;
+    div.textContent = text;
+    if (sender === 'crisis') div.classList.add('crisis');
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function addBotMessage(text) { addMessage(text, 'bot'); }
+  function addUserMessage(text) { addMessage(text, 'user'); }
+  function addCrisisMessage(text) { addMessage(text, 'crisis'); }
+
+  async function sendMessage() {
+    const message = input.value.trim();
+    if (!message) return;
+    addUserMessage(message);
+    input.value = '';
+
+    // Run toxicity + suicide/self-harm detection locally
+    const predictions = await toxicityModel.classify(message);
+
+    const isSevere = predictions.some(p => 
+      p.results[0].match && 
+      ['severe_toxicity', 'threat', 'toxicity'].includes(p.label)
+    );
+
+    const hasSuicideKeywords = /suicide|kill myself|want to die|end it|no reason to live/i.test(message);
+    const hasSelfHarm = /cut|cutting|hurt myself|self.?harm|overdose/i.test(message);
+
+    if (isSevere || hasSuicideKeywords || hasSelfHarm || inCrisis) {
+      inCrisis = true;
+      triggerCrisisResponse();
+    } else {
+      // Normal empathetic responses (we’ll expand this)
+      const replies = [
+        "I’m really here with you right now. That sounds incredibly heavy.",
+        "Thank you for telling me. You don’t have to go through this alone.",
+        "Your feelings are valid. Would you like to tell me more?",
+        "I care about you. What’s been the hardest part lately?"
+      ];
+      addBotMessage(replies[Math.floor(Math.random() * replies.length)]);
+    }
+  }
+
+  function triggerCrisisResponse() {
+    addCrisisMessage("🚨 I’m really worried about you right now. You don’t have to face this alone.");
+    addCrisisMessage("Please reach out RIGHT NOW — someone wants to help you 24/7:");
+    
+    // Simple geo-detect later; for now show main ones
+    addCrisisMessage(`🇺🇸 US → Call or text 988\n🇬🇧 UK → 116 123\n🇨🇦 CA → 1-833-456-4566\n🌍 Anywhere → befrienders.org`);
+
+    addCrisisMessage("You are loved. You matter. Just one more breath. One more minute. I believe in you.");
+    
+    // Grounding technique
+    setTimeout(() => {
+      addCrisisMessage("Try this with me right now:\nName 5 things you can see.\n4 things you can touch.\n3 things you can hear.\n2 things you can smell.\n1 thing you can taste.\nI’ll wait.");
+    }, 4000);
+  }
+
+  // Allow Enter key
+  input.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(); });
+
+  // Start
+  loadModel();
+</script>
+</body>
+</html>
